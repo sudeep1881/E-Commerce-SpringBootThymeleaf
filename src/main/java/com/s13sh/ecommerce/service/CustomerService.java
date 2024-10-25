@@ -22,4 +22,6 @@ public interface CustomerService {
 
 	String addToCart(HttpSession session, int id);
 
+    String resendOtp(int id, HttpSession session);
+
 }

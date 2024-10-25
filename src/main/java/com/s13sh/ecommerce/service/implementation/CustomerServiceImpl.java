@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import com.s13sh.ecommerce.dto.Customer;
 import com.s13sh.ecommerce.dto.Item;
 import com.s13sh.ecommerce.dto.Product;
-import com.s13sh.ecommerce.dto.Seller;
 import com.s13sh.ecommerce.helper.AES;
 import com.s13sh.ecommerce.helper.MyEmailSender;
 import com.s13sh.ecommerce.repository.CustomerRepository;
@@ -176,6 +175,18 @@ public class CustomerServiceImpl implements CustomerService{
 			return "redirect:/login";
 		}
 	}
-	
+
+	@Override
+	public String resendOtp(int id, HttpSession session) {
+		Customer customer=customerRepository.findById(id).orElseThrow();
+		int otp = new Random().nextInt(100000, 1000000);
+		customer.setOtp(otp);
+		customerRepository.save(customer);
+		emailSender.sendOtp(customer);
+
+		session.setAttribute("success", "Otp Resent Success");
+		session.setAttribute("id", customer.getId());
+		return "redirect:/customer/otp";
+	}
 	
 }

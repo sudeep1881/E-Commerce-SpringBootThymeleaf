@@ -79,4 +79,10 @@ public class SellerController {
 	public String updateProduct(HttpSession session,@Valid Product product,BindingResult result,@RequestParam MultipartFile image) {
 		return sellerService.updateProduct(session,product,result,image);
 	}
+
+	@GetMapping("/resend-otp/{id}")
+	public String resendOtp(@PathVariable int id,HttpSession session) {
+		return sellerService.resendOtp(id,session);
+	}
+	
 }

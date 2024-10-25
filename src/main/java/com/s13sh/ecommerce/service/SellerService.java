@@ -32,4 +32,6 @@ public interface SellerService {
 
 	String updateProduct(HttpSession session, @Valid Product product, BindingResult result, MultipartFile image);
 
+    String resendOtp(int id, HttpSession session);
+
 }

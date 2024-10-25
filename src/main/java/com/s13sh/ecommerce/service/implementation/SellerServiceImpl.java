@@ -185,10 +185,17 @@ public class SellerServiceImpl implements SellerService {
 			} else {
 				product.setSeller((Seller) session.getAttribute("seller"));
 				
+				byte[] picture;
 				try {
-					if(image.getBytes()!=null || image.getBytes().length!=0)
+					picture = new byte[image.getInputStream().available()];
+					image.getInputStream().read(picture);
+
+					if(picture.length>0)
 					product.setImageLink(cloudinaryHelper.saveImage(image));
-				} catch (IOException e) { 
+					else
+					product.setImageLink(productRepository.findById(product.getId()).orElseThrow().getImageLink()); 
+				
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				
@@ -202,6 +209,19 @@ public class SellerServiceImpl implements SellerService {
 			session.setAttribute("failure", "Invalid Session, Login Again");
 			return "redirect:/login";
 		}
+	}
+
+	@Override
+	public String resendOtp(int id, HttpSession session) {
+		Seller seller=sellerRepository.findById(id).orElseThrow();
+		int otp = new Random().nextInt(100000, 1000000);
+		seller.setOtp(otp);
+		sellerRepository.save(seller);
+		emailSender.sendOtp(seller);
+
+		session.setAttribute("success", "Otp Resent Success");
+		session.setAttribute("id", seller.getId());
+		return "redirect:/seller/otp";
 	}
 
 }
