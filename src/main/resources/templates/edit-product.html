@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Product</title>
+</head>
+<body>
+	<h1>Edit Product</h1>
+
+	<form action="/seller/edit-product" method="post"
+		enctype="multipart/form-data" th:object="${product}">
+		<input type="hidden" name="id" th:value="*{id}">
+		Name: <input type="text" name="name" th:value="*{name}"> <span
+			th:errors="*{name}"></span> <br>
+		<br> Price: <input type="text" name="price" th:value="*{price}">
+		<span th:errors="*{price}"></span> <br>
+		<br> Stock: <input type="number" name="stock" th:value="*{stock}">
+		<span th:errors="*{stock}"></span> <br>
+		<br> Description:
+		<textarea rows="5" cols="30" name="description"><th:block th:text="*{description}"></th:block></textarea>
+		<span th:errors="*{description}"></span> <br>
+		<br> Image: <input type="file" name="image"> <img th:alt="*{name}" th:src="*{imageLink}" height="75px" width="75px"> <br>
+		<br> Category: <select name="category" th:value="*{category}">
+			<option>Electronics</option>
+			<option>Fashion</option>
+			<option>Cosmetics</option>
+			<option>Toys</option>
+		</select> <span th:errors="*{category}"></span> <br>
+		<br>
+
+
+		<button>Update</button>
+	</form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+<body>
+
+<div class="container mt-4">
+			<div class="alert alert-danger alert-dismissible fade show" th:if="${session.failure}" th:text="${session.failure}" role="alert">
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			<div class="alert alert-success alert-dismissible fade show" th:if="${session.success}" th:text="${session.success}" role="alert">
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			<div th:text="${@sessionMessageRemover.removeMessage()}"></div>
+		</div>
+		
+		
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>stock</th>
+			<th>Price</th>
+			<th>Remove</th>
+			<th>Quantity</th>
+			<th>Add</th>
+		</tr>
+
+	<tr th:each="product:${products}">
+			<th th:text="${product.name}"></th>
+			<th th:text="${product.stock}"></th>
+			<th th:text="${product.price}"></th>
+			<th><button>-</button></th>
+			<th>0</th>
+			<th><a th:href="'/customer/cart-add/'+${product.id}"><button>+</button></a></th>
+		</tr>
+	</table>
+	
+	<br><br>
+	<a href="/customer/home"><button>Back</button></a>
+</body>
+</html>

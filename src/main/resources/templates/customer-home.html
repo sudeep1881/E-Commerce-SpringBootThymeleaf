@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container mt-4">
+			<div class="alert alert-danger alert-dismissible fade show" th:if="${session.failure}" th:text="${session.failure}" role="alert">
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			<div class="alert alert-success alert-dismissible fade show" th:if="${session.success}" th:text="${session.success}" role="alert">
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			<div th:text="${@sessionMessageRemover.removeMessage()}"></div>
+		</div>
+<h1>Customer Home Page</h1>
+<a href="/customer/products"><button>View Products</button></a>
+<a href="/"><button>View Cart</button></a>
+<a href="/"><button>View Previous Orders</button></a>
+<a href="/logout"><button>Logout</button></a>
+</body>
+</html>
