@@ -242,4 +242,47 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 	}
 
+	@Override
+	public String viewCart(HttpSession session, ModelMap map) {
+		if (session.getAttribute("customer") != null) {
+			Customer customer = (Customer) session.getAttribute("customer");
+			if(customer.getCart().getItems().isEmpty()) {
+				session.setAttribute("failure", "No Item in Cart");
+				return "redirect:/customer/home";
+			}else{
+			map.put("cart", customer.getCart());
+			return "customer-cart.html";
+			}
+		} else {
+			session.setAttribute("failure", "Invalid Session, Login Again");
+			return "redirect:/login";
+		}
+	}
+
+	@Override
+	public String addToCartItem(HttpSession session, int id) {
+		if (session.getAttribute("customer") != null) {
+			Item item=itemRepository.findById(id).orElseThrow();
+			Product product=productRepository.findByName(item.getName()).get(0);
+			return addToCart(session, product.getId());
+		}
+		else{
+			session.setAttribute("failure", "Invalid Session, Login Again");
+            return "redirect:/login";
+		}
+	}
+
+	@Override
+	public String removeFromCartItem(HttpSession session, int id) {
+		if (session.getAttribute("customer") != null) {
+			Item item=itemRepository.findById(id).orElseThrow();
+			Product product=productRepository.findByName(item.getName()).get(0);
+			return removeFromCartItem(session, product.getId());
+		}
+		else{
+			session.setAttribute("failure", "Invalid Session, Login Again");
+            return "redirect:/login";
+		}
+	}
+
 }

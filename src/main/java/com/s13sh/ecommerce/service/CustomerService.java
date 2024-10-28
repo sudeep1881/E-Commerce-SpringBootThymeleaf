@@ -26,4 +26,10 @@ public interface CustomerService {
 
 	String removeFromCart(HttpSession session, int id);
 
+    String viewCart(HttpSession session, ModelMap map);
+
+    String addToCartItem(HttpSession session, int id);
+
+    String removeFromCartItem(HttpSession session, int id);
+
 }

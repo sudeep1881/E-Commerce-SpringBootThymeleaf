@@ -63,9 +63,25 @@ public class CustomerController {
 		return customerService.removeFromCart(session,id);
 	}
 
+	@GetMapping("/cart-add/item/{id}")
+	public String addToCartItem(HttpSession session,@PathVariable int id) {
+		return customerService.addToCartItem(session,id);
+	}
+	
+	@GetMapping("/cart-remove/item/{id}")
+	public String removeFromCartItem(HttpSession session,@PathVariable int id) {
+		return customerService.removeFromCartItem(session,id);
+	}
+
 	@GetMapping("/resend-otp/{id}")
 	public String resendOtp(@PathVariable int id,HttpSession session) {
 		return customerService.resendOtp(id,session);
 	}
+
+	@GetMapping("/cart")
+	public String viewCart(HttpSession session,ModelMap map) {
+		return customerService.viewCart(session,map);
+	}
+
 	
 }
