@@ -193,25 +193,9 @@ main {
 							<div class="d-flex justify-content-between align-items-center">
 								<a th:href="'/customer/cart-remove/'+${product.id}"><button
 										class="btn btn-danger btn-sm">-</button></a>
-							 <span
-									th:if="${items == null}">0
-							 </span>
-							 <span
-									th:if="${items != null}">
-						     <span th:with="quantity=0">
-										<span th:each="item : ${items}">
-											 <span
-												th:if="${item.name == product.name}">
-												 <span
-													th:text="${item.quantity}">
-												 </span>
-												 <span
-													th:with="quantity=${item.quantity}"></span>
-												</span>
-											 </span> 
-									    </span>
-									<span th:text="${quantity}"></span>
-							</span> 
+										
+								<span th:text="${product.getQuantity(items)}"></span>
+							
 								<a th:href="'/customer/cart-add/'+${product.id}"><button
 										class="btn btn-success btn-sm">+</button></a>
 							</div>

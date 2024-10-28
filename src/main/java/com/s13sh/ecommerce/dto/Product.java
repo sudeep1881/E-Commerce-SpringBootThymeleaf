@@ -1,5 +1,7 @@
 package com.s13sh.ecommerce.dto;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Entity;
@@ -42,5 +44,20 @@ public class Product {
 	private boolean approved;
 	@ManyToOne
 	Seller seller;
+
+	public int getQuantity(List<Item> items)
+	{
+		int quantity=0;
+		if(items==null)
+			return quantity;
+		else {
+		for(Item item:items)
+		{
+			if(this.name.equals(item.getName()))
+				quantity=item.getQuantity();
+		}
+		return quantity;
+		}
+	}
 
 }
