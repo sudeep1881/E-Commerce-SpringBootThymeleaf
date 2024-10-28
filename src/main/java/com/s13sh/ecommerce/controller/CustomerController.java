@@ -57,6 +57,11 @@ public class CustomerController {
 	public String addToCart(HttpSession session,@PathVariable int id) {
 		return customerService.addToCart(session,id);
 	}
+	
+	@GetMapping("/cart-remove/{id}")
+	public String removeFromCart(HttpSession session,@PathVariable int id) {
+		return customerService.removeFromCart(session,id);
+	}
 
 	@GetMapping("/resend-otp/{id}")
 	public String resendOtp(@PathVariable int id,HttpSession session) {

@@ -238,13 +238,13 @@
         <div class="container">
           <h1 class="display-4">Welcome to our Ecommerce Store</h1>
           <p class="lead">Find the best products at great prices!</p>
-          <a href="/" class="btn btn-primary btn-lg"
+          <a href="#products" class="btn btn-primary btn-lg"
             ><i class="bi bi-cart-fill me-2"></i>Shop Now</a
           >
         </div>
       </section>
 
-      <section class="featured-products py-5" th:if="${products}">
+      <section id="products" class="featured-products py-5" th:if="${products}">
         <div class="container">
           <h2 class="text-center mb-4">Featured Products</h2>
           <div class="row">

@@ -24,4 +24,6 @@ public interface CustomerService {
 
     String resendOtp(int id, HttpSession session);
 
+	String removeFromCart(HttpSession session, int id);
+
 }
