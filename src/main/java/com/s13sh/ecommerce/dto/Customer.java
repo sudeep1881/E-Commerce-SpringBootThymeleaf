@@ -46,4 +46,5 @@ public class Customer {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	Cart cart = new Cart();
+
 }

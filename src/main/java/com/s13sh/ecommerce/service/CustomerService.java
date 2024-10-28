@@ -32,4 +32,11 @@ public interface CustomerService {
 
     String removeFromCartItem(HttpSession session, int id);
 
+    String checkout(HttpSession session, ModelMap map);
+
+    String confirmOrder(HttpSession session, int id, String razorpay_payment_id);
+
+    String viewOrders(HttpSession session, ModelMap map);
+
+
 }
