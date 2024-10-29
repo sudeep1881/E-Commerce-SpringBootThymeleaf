@@ -35,3 +35,5 @@ server.ssl.key-store=classpath:/security.p12
 server.ssl.key-store-password=saish123
 server.ssl.key-alias=saish
 server.ssl.enabled=true
+spring.servlet.multipart.max-file-size=10MB
+spring.servlet.multipart.max-request-size=10MB
