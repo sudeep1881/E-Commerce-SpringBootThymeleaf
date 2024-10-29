@@ -20,8 +20,8 @@ cloudinary.cloud_name=<Cloud Name>
 cloudinary.key=<Cloud Key>
 cloudinary.secret=<Cloud Secret>
 #Razorpay Properties
-razorpay.key=<Razorpay Key>
-razorpay.secret=<Razorpay Secret>
+razorpay.key=rzp_test_f4vcAPoh0RDZfi
+razorpay.secret=jjblWSJ6F7NJuPUOtNmDjg4i
 #Admin Credentials
 admin.email=admin
 admin.password=admin
@@ -29,3 +29,9 @@ admin.password=admin
 server.forward-headers-strategy=FRAMEWORK
 #For not checking while saving in DB
 spring.jpa.properties.javax.persistence.validation.mode=none
+# HTTPS
+server.ssl.key-store-type=PKCS12
+server.ssl.key-store=classpath:/security.p12
+server.ssl.key-store-password=saish123
+server.ssl.key-alias=saish
+server.ssl.enabled=true

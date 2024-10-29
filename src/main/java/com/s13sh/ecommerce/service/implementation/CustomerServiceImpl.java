@@ -395,7 +395,7 @@ public class CustomerServiceImpl implements CustomerService {
     public String viewOrders(HttpSession session, ModelMap map) {
        if(session.getAttribute("customer") != null) {
            Customer customer = (Customer) session.getAttribute("customer");
-           List<CustomerOrder> orders = orderRepository.findByCustomer(customer);
+           List<CustomerOrder> orders = orderRepository.findByCustomerAndPaymentIdIsNotNull(customer);
            if(orders.isEmpty()) {
                session.setAttribute("failure", "No Orders Found");
                return "redirect:/customer/home";

@@ -9,6 +9,6 @@ import com.s13sh.ecommerce.dto.CustomerOrder;
 
 public interface CustomerOrderRepository extends JpaRepository<CustomerOrder, Integer> {
 
-    List<CustomerOrder> findByCustomer(Customer customer);
-    
+	List<CustomerOrder> findByCustomerAndPaymentIdIsNotNull(Customer customer);
+
 }
