@@ -256,7 +256,7 @@ public class CustomerServiceImpl implements CustomerService {
                 }
             }
             customer.getCart().setPrice(customer.getCart().getItems().stream().mapToDouble(x -> x.getPrice()).sum());
-
+            customerRepository.save(customer);
             session.setAttribute("customer", customerRepository.findById(customer.getId()).orElseThrow());
             return "redirect:/customer/products";
         } else {
